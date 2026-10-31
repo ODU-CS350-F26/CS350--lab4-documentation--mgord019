@@ -33,3 +33,21 @@ application { //Allows  ./gradlew run --args=path-to-test-data
     mainClass = 'edu.odu.cs.MostCommonWords'
 }
 
+task copyHtml(type: Copy) {
+    from 'src/main/html'
+    into 'build/reports'
+}
+
+task copyDocs(type: Copy, dependsOn: 'javadoc') {
+    from 'build/docs'
+    into 'build/reports'
+}
+
+task reports(dependsOn: ['build', 'copyHtml', 'copyDocs'])
+
+task deployReports(type: Copy, dependsOn: 'reports') {
+    from "build/reports"
+    into "../gh-pages/reports"
+}
+
+
