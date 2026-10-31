@@ -45,14 +45,9 @@ task copyDocs(type: Copy, dependsOn: 'javadoc') {
 
 task reports(dependsOn: ['build', 'copyHtml', 'copyDocs'])
 
-task deployReports(dependsOn: ['reports', 'gitPublishPush']) {
-    project.gitPublish {
-        repoUri = 'https://github.com/ODU-CS350-F26/CS350--lab4-documentation--mgord019.git'
-        branch = 'gh-pages'
-        contents {
-            from 'build/reports'
-        }
-    }
+task deployReports(type: Copy, dependsOn: 'reports') {
+    from "build/reports"
+    into "../gh-pages/reports"
 }
 
 
