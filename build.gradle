@@ -15,8 +15,10 @@ java {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
-    testImplementation 'org.hamcrest:hamcrest-library:2.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.13.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.13.0'
+    testImplementation 'org.hamcrest:hamcrest-library:3.0'
+    implementation 'org.apache.commons:commons-csv:1.10.0'
 }
 
 tasks.withType(Test) {
